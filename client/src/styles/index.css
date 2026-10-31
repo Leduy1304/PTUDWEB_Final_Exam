@@ -1,0 +1,77 @@
+/* Global tweaks on top of Tailwind (loaded via CDN in index.html). */
+
+html, body, #root {
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Be Vietnam Pro', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  color: #0f172a;
+}
+
+::selection {
+  background: #c7d2fe;
+}
+
+/* Thin scrollbars for kanban columns */
+.kanban-col::-webkit-scrollbar { width: 6px; }
+.kanban-col::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+.kanban-col::-webkit-scrollbar-thumb:hover { background: #a5b4fc; }
+
+input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+/* Subtle entrance animation for cards / pages */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.fade-up {
+  animation: fade-up 0.35s ease both;
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.97) translateY(8px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.pop-in {
+  animation: pop-in 0.2s ease both;
+}
+
+/* Round custom checkbox for task rows */
+.task-check {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  border: 2px solid #cbd5e1;
+  background: #fff;
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+}
+.task-check:hover {
+  border-color: #6366f1;
+}
+.task-check:checked {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  border-color: transparent;
+}
+.task-check:checked::after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 2px;
+  width: 5px;
+  height: 9px;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+.task-check:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
